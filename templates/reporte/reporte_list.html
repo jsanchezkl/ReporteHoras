@@ -1,0 +1,83 @@
+{%extends 'base/base.html'%}
+
+{%block title%}
+Reporte de horas
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  <div class="row">
+    <a href="{%url 'reporte_crear'%}" class="btn btn-primary btn-icon-split">
+      <span class="icon text-white-50">
+          <i class="fas fa-flag"></i>
+      </span>
+      <span class="text">Crear</span>
+  </a>
+  </div>
+  <br>
+ 
+  <div class="row">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            
+            <th scope="col">Día</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Total de Horas</th>
+            <th scope="col">Campaña</th>
+            <th scope="col">Tipo de tarea</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+            {%for reporte in object_list%}
+          <tr>
+            
+            <td>{{reporte.fecha}}</td>
+            <td>{{reporte.descripcion}}</td>
+            <td>{{reporte.horas}}</td>
+            <td>{{reporte.campania.codigo}} {{reporte.campania.nombre}}</td>
+            <td>{{reporte.actividad.nombre}}</td>
+            <td>
+              <!--<a href="{%url 'reporte_editar' reporte.id%}" class="btn btn-primary">Editar</a>-->
+              <a href="{%url 'reporte_editar' reporte.id %}" class="btn btn-primary btn-circle btn-sm">
+                <i class="fas fa-edit"></i>
+              </a>
+ 
+              <a href="{%url 'reporte_eliminar' reporte.id%}" class="btn btn-danger btn-circle btn-sm">
+                <i class="fas fa-trash"></i>
+              </a>
+              <!--<a href="{%url 'reporte_eliminar' reporte.id%}" class="btn btn-danger">Eliminar</a>-->
+            </td>
+          </tr>
+          {%endfor%}
+          {%else%}
+          <h1>No hay horas cargadas</h1>
+          {%endif%}
+        </tbody>
+      </table>  
+    </div>
+
+
+
+
+      <ul class="justify-content-center">
+       {%if page_obj.has_previous%} 
+        <a href="?page={{page_obj.previous_page_number}}" class="btn btn-primary btn-circle btn-sm">
+          <i class="fas fa-arrow-left"></i>
+      </a>
+      {%endif%}
+      {%if page_obj.has_next%} 
+      <a href="?page={{page_obj.next_page_number}}" class="btn btn-primary btn-circle btn-sm">
+          <i class="fas fa-arrow-right"></i>
+      </a>
+      {%endif%}
+      </ul>  
+</div>
+
+{%endblock%}
+
+{%block extrajs%}
+
+{%endblock extrajs%}

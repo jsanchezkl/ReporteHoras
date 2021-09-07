@@ -1,0 +1,44 @@
+{%extends 'base/base.html'%}
+
+{%block title%}
+listar Campañas 
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Masivo</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Horas total</th>
+            <th scope="col">Porcentaje establecido</th>
+            <th scope="col">acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+            {%for persona in object_list%}
+          <tr>
+            <td>{{persona.id}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td>{{persona.masivo}}</td>
+            <td>{{persona.cargo}}</td>
+            <td>{{persona.horas_total}}</td>
+            <td>{{persona.porc_establecido}}</td>
+      
+          </tr>
+          {%endfor%}
+          {%else%}
+          <h1>No hay registros de personas</h1>
+          {%endif%}
+        </tbody>
+      </table>    
+</div>
+
+   
+{%endblock%}

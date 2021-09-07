@@ -1,0 +1,37 @@
+{%extends 'base/base.html'%}
+
+{%block title%}
+listar actividades 
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+            {%for actividad in object_list%}
+          <tr>
+            <td>{{actividad.id}}</td>
+            <td>{{actividad.nombre}}</td>
+            <td>
+              <a href="{%url 'actividad_editar' actividad.id%}" class="btn btn-primary">Editar</a>
+              <a href="{%url 'actividad_eliminar' actividad.id%}" class="btn btn-danger">Eliminar</a>
+            </td>
+          </tr>
+          {%endfor%}
+          {%else%}
+          <h1>No hay registros de actividades</h1>
+          {%endif%}
+        </tbody>
+      </table>    
+</div>
+
+   
+{%endblock%}

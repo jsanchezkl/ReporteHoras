@@ -1,0 +1,18 @@
+{%extends 'base/base.html'%}
+
+{%block title%}
+Crear macota 
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <form method="post">
+        {%csrf_token%}
+       <h3>¿Desea eliminar el registro de{{object.nombre}} </h3>
+
+        <button type="submit" class="btn btn_danger">Si</button>
+        <a class="btn btn-default" href="{% url 'actividad_listar'%}">Cancelar</a>
+    </form> 
+</div>
+   
+{%endblock%}
